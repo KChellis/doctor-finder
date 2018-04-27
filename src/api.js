@@ -2,7 +2,7 @@ import { Doctor } from "./doctor.js";
 
 class API {
   constructor() {
-    this.key = process.env.exports.apiKey;
+    // this.key = process.env.apiKey;
     this.foundDoctors;
     this.results;
     this.doctors = [];
@@ -15,6 +15,7 @@ class API {
       let lname = profile.last_name;
       let image = profile.image_url;
       let bio = profile.bio;
+      let accepting = this.results.data[i].practices.accepts_new_patients;
       let address = [];
       address.push(this.results.data[i].practices[0].visit_address.city);
       address.push(this.results.data[i].practices[0].visit_address.state);
@@ -27,7 +28,10 @@ class API {
           phone = this.results.data[j].practices[0].phones[j].number;
         }
       }
-      let accepting = this.results.data[i].practices.accepts_new_patients;
+      if(this.results.data[i].practices.accepts_new_patients){
+        console.log("here");
+      }
+
       let website;
       if(this.results.data[i].practices.website) {
         website = this.results.data[i].practices.website;
@@ -37,12 +41,13 @@ class API {
       let doctor = new Doctor(fname, lname, address, phone, image, bio, website, accepting);
       this.doctors.push(doctor);
     }
+    console.log(this.doctors[0]);
   }
 
   doctorCall(name) {
     let promise = new Promise ((resolve, reject) => {
       let request = new XMLHttpRequest();
-      let url = `https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=45.5435634%2C-122.7945077%2C20&skip=0&limit=50&user_key=${this.key}`;
+      let url = `https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=45.5435634%2C-122.7945077%2C20&skip=0&limit=50&user_key=6dbd263d6e7ef159e0f1dc6865b7b229`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);

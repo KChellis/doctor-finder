@@ -6,12 +6,12 @@ import './styles.css';
 let api= new API;
 
 $(function() {
-  $(".form").submit(function(event) {
+  $("#Drname").submit(function(event) {
     event.preventDefault();
     $(".results").text("");
     let name = $("#name").val();
-    let promise = api.doctorCall(name);
-    promise.then(() => {
+    api.doctorCall(name);
+    setTimeout(function() {
       api.doctors.forEach(function(doctor) {
         if (api.foundDoctors) {
           let accepting;
@@ -20,33 +20,32 @@ $(function() {
           } else {
             accepting = "No";
           }
-          $(".results").append(`
+          if(!doctor.address[4]) {
+            doctor.address[4] = "";
+          }
+          $(".doctors").append(`
             <div class="doctor">
-              <p>${doctor.fname} ${doctor.lname}</p>
+              <h3>${doctor.fname} ${doctor.lname}</h3>
               <div class="details">
                 <img src="${doctor.image}" alt="photo of doctor">
-                <p>Accepting new patients: ${accepting}</p>
-                <p>Phone: ${doctor.phone}</p>
-                <p>Website: ${doctor.website}</p>
-                <p>Address:</p>
+                <p><strong>Accepting new patients:</strong> ${accepting}</p>
+                <p><strong>Phone:</strong> ${doctor.phone}</p>
+                <p><strong>Website:</strong> ${doctor.website}</p>
+                <p><strong>Address:</strong></p>
                 <ul>
-                  <li>${doctor.address[3]}</li>
-                  <li>${doctor.address[4]}</li>
+                  <li>${doctor.address[3]} ${doctor.address[4]}</li>
                   <li>${doctor.address[0]}, ${doctor.address[1]} ${doctor.address[2]}</li>
                 </ul>
-                <p>Bio: ${doctor.bio}</p>
+                <p><strong>Bio:</strong> ${doctor.bio}</p>
               </div>
             </div>`);
         } else {
-          $(".results").append(`<p>Search returned no results. Try aagain</p>`);
+          $(".doctors").append(`<p>Search returned no results. Try aagain</p>`);
         }
 
       });
       $(".results").show();
-    });
+    }, 5000)
+  });
 
-  });
-  $(".doctor").click(function() {
-    $(this).children(".details").slideToggle();
-  });
 });
