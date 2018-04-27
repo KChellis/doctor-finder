@@ -10,16 +10,17 @@ $(function() {
     event.preventDefault();
     let api = new API;
     $(".doctors").text("");
+    let name = $("#name").val();
+    api.doctorCall(name);
+    // let search = $(this).val();
+    // if (search === "Drname") {
+    //   let name = $("#name").val();
+    //   api.doctorCall(name);
+    // }else {
+    //   let ailment = $("#ailment").val();
+    //   api.ailmentCall(ailment);
+    // }
 
-    let search = $(this).val();
-    if (search === "Drname") {
-      let name = $("#name").val();
-      api.doctorCall(name);
-    }else {
-      let ailment = $("#ailment").val();
-      api.ailmentCall(ailment);
-    }
-  
     setTimeout(function() {
       if(api.foundDoctors){
         api.doctors.forEach(function(doctor) {
