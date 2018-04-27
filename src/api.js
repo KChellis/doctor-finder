@@ -15,7 +15,7 @@ class API {
       let lname = profile.last_name;
       let image = profile.image_url;
       let bio = profile.bio;
-      let accepting = this.results.data[i].practices.accepts_new_patients;
+      let accepting = this.results.data[i].practices[0].accepts_new_patients;
       let address = [];
       address.push(this.results.data[i].practices[0].visit_address.city);
       address.push(this.results.data[i].practices[0].visit_address.state);
@@ -28,20 +28,15 @@ class API {
           phone = this.results.data[j].practices[0].phones[j].number;
         }
       }
-      if(this.results.data[i].practices.accepts_new_patients){
-        console.log("here");
-      }
-
       let website;
-      if(this.results.data[i].practices.website) {
-        website = this.results.data[i].practices.website;
+      if(this.results.data[i].practices[0].website) {
+        website = this.results.data[i].practices[0].website;
       }else {
         website = "No website found";
       }
       let doctor = new Doctor(fname, lname, address, phone, image, bio, website, accepting);
       this.doctors.push(doctor);
     }
-    console.log(this.doctors[0]);
   }
 
   doctorCall(name) {

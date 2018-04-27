@@ -3,12 +3,13 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-let api= new API;
+
 
 $(function() {
   $("#Drname").submit(function(event) {
     event.preventDefault();
-    $(".results").text("");
+    let api = new API;
+    $(".doctors").text("");
     let name = $("#name").val();
     api.doctorCall(name);
     setTimeout(function() {
@@ -45,7 +46,7 @@ $(function() {
 
       });
       $(".results").show();
-    }, 5000)
+    }, 3000);
   });
 
 });
