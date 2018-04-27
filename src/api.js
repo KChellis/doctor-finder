@@ -37,6 +37,7 @@ class API {
       let doctor = new Doctor(fname, lname, address, phone, image, bio, website, accepting);
       this.doctors.push(doctor);
     }
+
   }
 
   doctorCall(name) {
@@ -63,7 +64,30 @@ class API {
       }
     });
   }
-
+  ailmentCall(ailment) {
+    let promise = new Promise ((resolve, reject) => {
+      let request = new XMLHttpRequest();
+      let url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${ailment}&location=45.5435634%2C-122.7945077%2C20&skip=0&limit=50&user_key=6dbd263d6e7ef159e0f1dc6865b7b229`;
+      request.onload = function() {
+        if (this.status === 200) {
+          resolve(request.response);
+        }else {
+          reject(Error(request.statusText));
+        }
+      };
+      request.open("GET", url, true);
+      request.send();
+    });
+    promise.then((response) => {
+      this.results = JSON.parse(response);
+      if (this.results.data.length !== 0) {
+        this.handleResults();
+        this.foundDoctors = true;
+      }else {
+        this.foundDoctors = false;
+      }
+    });
+  }
 
 
 }

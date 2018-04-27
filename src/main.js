@@ -6,15 +6,23 @@ import './styles.css';
 
 
 $(function() {
-  $("#Drname").submit(function(event) {
+  $(".form").submit(function(event) {
     event.preventDefault();
     let api = new API;
     $(".doctors").text("");
-    let name = $("#name").val();
-    api.doctorCall(name);
+
+    let search = $(this).val();
+    if (search === "Drname") {
+      let name = $("#name").val();
+      api.doctorCall(name);
+    }else {
+      let ailment = $("#ailment").val();
+      api.ailmentCall(ailment);
+    }
+  
     setTimeout(function() {
-      api.doctors.forEach(function(doctor) {
-        if (api.foundDoctors) {
+      if(api.foundDoctors){
+        api.doctors.forEach(function(doctor) {
           let accepting;
           if (doctor.accepting) {
             accepting = "Yes";
@@ -26,25 +34,25 @@ $(function() {
           }
           $(".doctors").append(`
             <div class="doctor">
-              <h3>${doctor.fname} ${doctor.lname}</h3>
-              <div class="details">
-                <img src="${doctor.image}" alt="photo of doctor">
-                <p><strong>Accepting new patients:</strong> ${accepting}</p>
-                <p><strong>Phone:</strong> ${doctor.phone}</p>
-                <p><strong>Website:</strong> ${doctor.website}</p>
-                <p><strong>Address:</strong></p>
-                <ul>
-                  <li>${doctor.address[3]} ${doctor.address[4]}</li>
-                  <li>${doctor.address[0]}, ${doctor.address[1]} ${doctor.address[2]}</li>
-                </ul>
-                <p><strong>Bio:</strong> ${doctor.bio}</p>
-              </div>
+            <h3>${doctor.fname} ${doctor.lname}</h3>
+            <div class="details">
+            <img src="${doctor.image}" alt="photo of doctor">
+            <p><strong>Accepting new patients:</strong> ${accepting}</p>
+            <p><strong>Phone:</strong> ${doctor.phone}</p>
+            <p><strong>Website:</strong> ${doctor.website}</p>
+            <p><strong>Address:</strong></p>
+            <ul>
+            <li>${doctor.address[3]} ${doctor.address[4]}</li>
+            <li>${doctor.address[0]}, ${doctor.address[1]} ${doctor.address[2]}</li>
+            </ul>
+            <p><strong>Bio:</strong> ${doctor.bio}</p>
+            </div>
             </div>`);
-        } else {
-          $(".doctors").append(`<p>Search returned no results. Try aagain</p>`);
-        }
+          });
+      }else {
+        $(".doctors").append(`<p>Search returned no results. Try aagain</p>`);
+      }
 
-      });
       $(".results").show();
     }, 3000);
   });
