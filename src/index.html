@@ -2,11 +2,45 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Portland Doctor Finder</title>
   </head>
   <body>
     <div class="container">
+      <h1>Portland Doctor Finder</h1>
+      <form id="Drname" class="form" action="index.html" method="post">
+        <label for="name">Search by doctor name:</label>
+        <input id="name" class="form-control" type="text" name="name" placeholder="Enter full or partial name here">
+        <button type="submit" name="button">Find Doctors!</button>
+      </form>
+      <!-- <form id="ailment" class="form" action="index.html" method="post">
+        <label for="name">Search by illness you need treated:</label>
+        <input id="name" class="form-control" type="text" name="name" placeholder="Enter ailment here">
+        <button type="submit" name="button">Find Doctors!</button>
+      </form> -->
+      <div class="results">
+        <h3>Search Results:</h3>
+        <p>Click name to see details!</p>
+
+      </div>
 
     </div>
   </body>
 </html>
+
+<!-- This is here to be used later
+<div class="doctor">
+  <p>${doctor.fname} ${doctor.lname}</p>
+  <div class="details">
+    <img src="${doctor.image}" alt="photo of doctor">
+    <p>Accepting new patients: ${accepting}</p>
+    <p>Phone: ${doctor.phone}</p>
+    <p>Website: ${doctor.website}</p>
+    <p>Address:</p>
+    <ul>
+      <li>${doctor.address[3]}</li>
+      <li>${doctor.address[4]}</li>
+      <li>${doctor.address[0]}, ${doctor.address[1]} ${doctor.address[2]}</li>
+    </ul>
+    <p>Bio: ${doctor.bio}</p>
+  </div>
+</div> -->
