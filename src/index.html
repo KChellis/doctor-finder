@@ -8,14 +8,13 @@
     <div class="container">
       <h1>Portland Doctor Finder</h1>
       <form value="name" class="form" action="index.html" method="post">
-        <label for="name">Search by doctor name:</label>
-        <input id="name" class="form-control" type="text" name="name" placeholder="Enter full or partial name here">
+        <label for="type">How would you like to search?</label>
+        <select id="type" class="" name="">
+          <option value="name">By doctor name</option>
+          <option value="ailment">By illness</option>
+        </select>
+        <input id="query" class="form-control" type="text" name="ailment" placeholder="Enter query here">
         <button value="name" type="submit" name="button">Find Doctors!</button>
-      </form>
-      <form value="ailment" class="form" action="index.html" method="post">
-        <label for="ailment">Search by illness you need treated:</label>
-        <input id="ailment" class="form-control" type="text" name="ailment" placeholder="Enter ailment here">
-        <button value="ailment" type="submit" name="button">Find Doctors!</button>
       </form>
       <div class="results">
         <h3>Search Results:</h3>

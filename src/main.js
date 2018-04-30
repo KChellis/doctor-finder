@@ -10,20 +10,10 @@ $(function() {
     event.preventDefault();
     let api = new API;
     $(".doctors").text("");
-    let name = $("#name").val();
-    let ailment = $("#ailment").val();
-    console.log(name);
-    console.log(ailment);
-    // console.log(this);
-    // let search = $(this).("button").val();
-    // console.log(search);
-    // if (search === "name") {
-    //   name = $("#name").val();
-    // } else {
-    //   name = $("#ailment").val();
-    // }
-    // console.log(name);
-    api.doctorCall(name, ailment);
+    let query = $("#query").val();
+    let type = $("#type").val();
+
+    api.doctorCall(query, type);
 
     setTimeout(function() {
       if(api.foundDoctors){
@@ -55,7 +45,7 @@ $(function() {
             </div>`);
           });
       }else {
-        $(".doctors").append(`<p>Search returned no results. Try aagain</p>`);
+        $(".doctors").append(`<p>Search returned no results. Try again</p>`);
       }
 
       $(".results").show();

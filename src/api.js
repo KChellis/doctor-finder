@@ -40,14 +40,14 @@ class API {
 
   }
 
-  doctorCall(name, type) {
+  doctorCall(query, type) {
     let promise = new Promise ((resolve, reject) => {
       let request = new XMLHttpRequest();
       let url;
       if (type === "name") {
-        url = `https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=45.5435634%2C-122.7945077%2C20&skip=0&limit=50&user_key=6dbd263d6e7ef159e0f1dc6865b7b229`;
+        url = `https://api.betterdoctor.com/2016-03-01/doctors?name=${query}&location=45.5435634%2C-122.7945077%2C20&skip=0&limit=50&user_key=6dbd263d6e7ef159e0f1dc6865b7b229`;
       } else {
-        url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${name}&location=45.5435634%2C-122.7945077%2C100&skip=0&limit=10&user_key=6dbd263d6e7ef159e0f1dc6865b7b229`;
+        url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${query}&location=45.5435634%2C-122.7945077%2C100&skip=0&limit=10&user_key=6dbd263d6e7ef159e0f1dc6865b7b229`;
       }
 
       request.onload = function() {
