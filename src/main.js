@@ -11,15 +11,19 @@ $(function() {
     let api = new API;
     $(".doctors").text("");
     let name = $("#name").val();
-    api.doctorCall(name);
-    // let search = $(this).val();
-    // if (search === "Drname") {
-    //   let name = $("#name").val();
-    //   api.doctorCall(name);
-    // }else {
-    //   let ailment = $("#ailment").val();
-    //   api.ailmentCall(ailment);
+    let ailment = $("#ailment").val();
+    console.log(name);
+    console.log(ailment);
+    // console.log(this);
+    // let search = $(this).("button").val();
+    // console.log(search);
+    // if (search === "name") {
+    //   name = $("#name").val();
+    // } else {
+    //   name = $("#ailment").val();
     // }
+    // console.log(name);
+    api.doctorCall(name, ailment);
 
     setTimeout(function() {
       if(api.foundDoctors){

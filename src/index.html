@@ -7,16 +7,16 @@
   <body>
     <div class="container">
       <h1>Portland Doctor Finder</h1>
-      <form value="Drname" class="form" action="index.html" method="post">
+      <form value="name" class="form" action="index.html" method="post">
         <label for="name">Search by doctor name:</label>
         <input id="name" class="form-control" type="text" name="name" placeholder="Enter full or partial name here">
-        <button type="submit" name="button">Find Doctors!</button>
+        <button value="name" type="submit" name="button">Find Doctors!</button>
       </form>
-      <!-- <form value="ailment" class="form" action="index.html" method="post">
-        <label for="name">Search by illness you need treated:</label>
-        <input id="name" class="form-control" type="text" name="name" placeholder="Enter ailment here">
-        <button type="submit" name="button">Find Doctors!</button>
-      </form> -->
+      <form value="ailment" class="form" action="index.html" method="post">
+        <label for="ailment">Search by illness you need treated:</label>
+        <input id="ailment" class="form-control" type="text" name="ailment" placeholder="Enter ailment here">
+        <button value="ailment" type="submit" name="button">Find Doctors!</button>
+      </form>
       <div class="results">
         <h3>Search Results:</h3>
       </div>
