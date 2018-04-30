@@ -16,7 +16,9 @@ $(function() {
     api.doctorCall(query, type);
 
     setTimeout(function() {
-      if(api.foundDoctors){
+      if (api.message) {
+        $(".doctors").append(`<p>${api.message}</p>`);
+      }else if(api.foundDoctors){
         api.doctors.forEach(function(doctor) {
           let accepting;
           if (doctor.accepting) {
@@ -43,7 +45,7 @@ $(function() {
             <p><strong>Bio:</strong> ${doctor.bio}</p>
             </div>
             </div>`);
-          });
+        });
       }else {
         $(".doctors").append(`<p>Search returned no results. Try again</p>`);
       }
